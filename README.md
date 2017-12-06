@@ -1,2 +1,2 @@
 # neuralText
-A simple binary text classifcation based ona feed-forward neural network
+A simple binary text classifcation based on a feed-forward neural network
