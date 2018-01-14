@@ -1,2 +1,2 @@
-# neuralText
-A simple binary text classifcation based on a feed-forward neural network
+# deepNeuralText
+Simple binary classification of texts based on a deep recurrent neural network
