@@ -7,7 +7,9 @@
 import os.path
 import time
 import numpy as np
+import nltk
 from sklearn import metrics
+np.random.seed(1)
 from keras.layers import Dense, Embedding
 from keras.layers import LSTM, GlobalMaxPool1D, Dropout
 from keras.preprocessing import text, sequence
@@ -22,10 +24,22 @@ def load_data(infile):
 
 def encode_data(docs):
     tokenizer = text.Tokenizer(num_words=None)
-    tokenizer.fit_on_texts(list(docs))
+    tokenizer.fit_on_texts(docs)
     tokenized = tokenizer.texts_to_sequences(docs)
     docs = sequence.pad_sequences(tokenized, maxlen=128)
     return docs
+
+def pos_tag(docs):
+    tagged_sentences = []
+    for item in docs:
+        combined = []
+        tokenized = nltk.word_tokenize(item)
+        tagged = nltk.pos_tag(tokenized)
+        for i in xrange(len(tagged)):
+            combined.append('_'.join([tagged[i][0], tagged[i][1]]))
+        combined_string = ' '.join(combined)
+        tagged_sentences.append(combined_string)
+    return tagged_sentences
 
 def build_model(embed_size,max_length,vocab_size):
     model = Sequential()
@@ -41,14 +55,17 @@ def build_model(embed_size,max_length,vocab_size):
                   metrics=['accuracy'])
     return model
 
-# Start the counter and set the seed for reproducibility
+# Start the counter
 start = time.time()
-np.random.seed(1)
 
 # Load raw data
 print("Loading data...")
 docs = load_data('corpus.txt')
 labels = load_data('labels.txt')
+
+# Tokenize and pos tag the data
+print("Tokenizing and POS tagging...")
+docs = pos_tag(docs)
 
 # Encode the data
 print("Encoding...")
