@@ -7,7 +7,7 @@ Features:
 - PoS-tagging is also included to improve classification, but is not essential for the network to run.
 
 Performance:
-- 88.6% accuracy on an example corpus from Kaggle Spooky Author Identification challenge (https://www.kaggle.com/c/spooky-author-identification)
+- 89% accuracy on an example corpus from Kaggle Spooky Author Identification challenge (https://www.kaggle.com/c/spooky-author-identification)
 
 Version: 0.2
 
