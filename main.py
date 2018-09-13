@@ -1,6 +1,6 @@
 # deep authorship attribution
 # 
-# A multi-class text classification based on a deep recurrent neural network (RNN) with convolutional layers. 
+# A multi-class text classification based on a deep convolutional neural network (CNN). 
 # The network includes an embedding layer, so the input is first transformed into padded sequences of fixed length. 
 # PoS-tagging, and additional feature engineering is also included to improve classification, but is not essential 
 # for the network to run.
